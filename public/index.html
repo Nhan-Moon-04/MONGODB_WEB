@@ -10,6 +10,7 @@
   <body>
     <div class="app container">
       <!--------- SideBar -------->
+
       <div class="sideBar-ontoggle --hidden">
         <svg class="icon logo">
           <use xlink:href="../assets/images/sprite.svg#logo"></use>
@@ -59,7 +60,9 @@
           </div>
         </div>
       </div>
+
       <!--------- Header --------->
+
       <header class="header">
         <form class="header__search__form">
           <div class="header__search">
@@ -75,7 +78,55 @@
           class="menu-toggle"
         />
       </header>
-      <div class="main"></div>
+
+      <!-------- Main App -------->
+
+      <div class="main">
+        <div class="inventory-app">
+          <div class="product-section__header">
+            <h1>Products</h1>
+            <div class="product-section__header__buttons">
+              <div class="addProBtn">Add Product</div>
+              <div class="filterBtn">
+                <img src="../assets/images/filterIcon.svg" alt="" />
+                <p>Filters</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-section">
+            <table>
+              <tr class="table__title">
+                <td>Products</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Availability</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>FIRST COLUMN</td>
+                <td>SECOND COLUMN</td>
+                <td>THIRD COLUMN</td>
+                <td>FOURTH COLUMN</td>
+                <td class="editTableSection">
+                  <div class="table__icons">
+                    <div class="editIcon">
+                      <svg class="icon">
+                        <use
+                          xlink:href="../assets/images/sprite.svg#editIcon"
+                        ></use>
+                      </svg>
+                    </div>
+                    <div class="deleteIcon">
+                      <img src="../assets/images/deleteIcon.svg" alt="" />
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="../src/js/app.js" type="module"></script>
   </body>

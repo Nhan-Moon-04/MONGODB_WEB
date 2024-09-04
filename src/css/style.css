@@ -49,9 +49,11 @@ input {
 
 :root {
   --color-primary-color: #1570ef;
+  --color-primary-shadow: #1570ef52;
+  --color-sec-shadow: #c8c0c051;
 
   --color-background: #fff;
-  --color-background-grey: #d0d3d9;
+  --color-background-grey: #e3e8f0;
 
   --color-fonts: #000000;
   --color-fonts-grey: #5d6679;
@@ -128,7 +130,7 @@ button {
     display: grid;
     grid-template-columns: 280px 1fr;
     grid-template-rows: 100px 100vh;
-    column-gap: 0.5rem;
+    column-gap: 0.1rem;
   }
   .sideBar {
     display: block;
@@ -156,7 +158,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .header__search__form {
@@ -174,7 +176,7 @@ button {
 }
 
 .header__search {
-  width: 250px;
+  width: 230px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,10 +195,11 @@ button {
 }
 
 .header img {
+  margin-right: 0;
   cursor: pointer;
   width: 50px;
   height: 50px;
-  padding: 10px;
+  padding: 10px 0px 10px 10px;
 }
 
 /* sidebar on toggle */
@@ -207,6 +210,12 @@ button {
   height: 100%;
   box-shadow: 0 0 20px rgba(184, 184, 184, 0.514);
   background-color: var(--color-background);
+}
+
+@media screen and (min-width: 400px) {
+  .header__search {
+    width: 250px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -240,6 +249,7 @@ button {
   }
 
   .sideBar__icons {
+    color: var(--color-background-grey);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -254,6 +264,10 @@ button {
     justify-content: start;
     align-items: center;
     margin-bottom: 2rem;
+  }
+
+  .sideBar__icon p {
+    font-weight: 400;
   }
 
   .sideBar__icon:hover {
@@ -304,6 +318,7 @@ img {
 }
 
 .sideBar__icons {
+  color: var(--color-fonts-grey);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -349,4 +364,166 @@ img {
 
 .--hidden {
   display: none;
+}
+
+/* --------------------- Inventory App ----------------------------- */
+.main {
+  width: 100%;
+  padding: 2rem;
+  overflow: auto;
+}
+
+.inventory-app {
+  padding: 1rem 0.5rem;
+  width: 100%;
+  background-color: var(--color-background);
+  border-radius: 8px;
+}
+
+.product-section {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.product-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.product-section__header h1 {
+  font-size: 1.2rem;
+}
+
+.product-section__header__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.addProBtn {
+  cursor: pointer;
+  color: white;
+  padding: 0.65rem;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: var(--color-primary-color);
+  margin-right: 0.5rem;
+  font-size: 0.6rem;
+  transition: all 0.2s;
+}
+
+.filterBtn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--color-background-grey);
+  padding: 0.6rem;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.filterBtn p {
+  font-size: 0.6rem;
+}
+
+.filterBtn img {
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+}
+
+.inventory-app table {
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+}
+
+.inventory-app table tr td {
+  margin-right: 20px;
+  padding: 0px 20px;
+  font-size: 0.7rem;
+}
+
+.inventory-app .table__title td {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.inventory-app table .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.inventory-app .table__icons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.deleteIcon {
+  cursor: pointer;
+  margin: 0;
+}
+
+.editIcon {
+  cursor: pointer;
+  padding: 0;
+  margin-right: 15px;
+}
+
+.editIcon:hover {
+  filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+    brightness(99%) contrast(90%);
+}
+
+.deleteIcon:hover {
+  filter: invert(29%) sepia(94%) saturate(1395%) hue-rotate(340deg)
+    brightness(92%) contrast(89%);
+}
+
+.deleteIcon img {
+  margin: 0;
+}
+@media screen and (min-width: 1024px) {
+  .inventory-app .table__title td {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .filterBtn p {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .inventory-app {
+    padding: 2rem;
+  }
+
+  .addProBtn {
+    font-size: 0.9rem;
+  }
+
+  .addProBtn:hover {
+    box-shadow: 0 0 15px var(--color-primary-shadow);
+  }
+
+  .filterBtn:hover {
+    box-shadow: 0 0 15px var(--color-sec-shadow);
+  }
+
+  .product-section__header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .inventory-app table tr td {
+    margin-right: 20px;
+    padding: 0px 20px;
+    font-size: 0.8rem;
+  }
 }
