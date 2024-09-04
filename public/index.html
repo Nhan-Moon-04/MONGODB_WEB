@@ -3,11 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../src/css/font.css" />
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <title>Inventory</title>
   </head>
   <body>
-
-   
-     
+    <div class="app container">
+      <div class="sideBar-ontoggle --hidden"></div>
+      <div class="sideBar">t</div>
+      <header class="header">
+        <form class="header__search__form">
+          <div class="header__search">
+            <svg class="icon">
+              <use xlink:href="../assets/images/sprite.svg#search"></use>
+            </svg>
+            <input type="text" placeholder="Search product, order" />
+          </div>
+        </form>
+        <img
+          src="../assets/images/burger.svg"
+          alt="menu icon"
+          class="menu-toggle"
+        />
+      </header>
+      <div class="main"></div>
+    </div>
+    <script src="../src/js/app.js" type="module"></script>
   </body>
 </html>
