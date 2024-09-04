@@ -16,7 +16,7 @@
   text-decoration: none;
 }
 
-@media screen and (min-width: 1500px) {
+@media screen and (min-width: 2000px) {
   .container {
     max-width: 1500px;
     margin: 0rem auto;
@@ -205,7 +205,8 @@ button {
   width: 250px;
   top: 0;
   height: 100%;
-  background-color: black;
+  box-shadow: 0 0 20px rgba(184, 184, 184, 0.514);
+  background-color: var(--color-background);
 }
 
 @media screen and (min-width: 1024px) {
@@ -217,4 +218,135 @@ button {
   }
 }
 
-/* --------------------------------  ------------------------------- */
+/* -------------------------------- Sidebar ------------------------------- */
+
+@media screen and (min-width: 1024px) {
+  .sideBar {
+    padding: 0rem 2.4rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr;
+  }
+
+  .sideBar .logo {
+    width: 200px;
+  }
+
+  .sideBar__icon svg,
+  img {
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+  }
+
+  .sideBar__icons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .sideBar__icon {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .sideBar__icon:hover {
+    color: var(--color-primary-color);
+  }
+
+  .sideBar__dashboard:hover svg {
+    filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+      brightness(99%) contrast(90%);
+  }
+
+  .sideBar__inventory :hover {
+    color: var(--color-primary-color);
+  }
+
+  .sideBar__inventory:hover svg {
+    filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+      brightness(99%) contrast(90%);
+  }
+
+  .sideBar__setting :hover {
+    color: var(--color-primary-color);
+  }
+
+  .sideBar__setting:hover img {
+    filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+      brightness(99%) contrast(90%);
+  }
+}
+
+/* ---------------------- Sidebar Toggle ---------------------- */
+.sideBar-ontoggle {
+  padding: 0rem 2.4rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 150px 1fr;
+}
+
+.sideBar-ontoggle .logo {
+  width: 160px;
+}
+
+.sideBar__icon svg,
+img {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.sideBar__icons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+}
+
+.sideBar__icon {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sideBar__icon:hover {
+  color: var(--color-primary-color);
+}
+
+.sideBar__dashboard:hover svg {
+  filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+    brightness(99%) contrast(90%);
+}
+
+.sideBar__inventory :hover {
+  color: var(--color-primary-color);
+}
+
+.sideBar__inventory:hover svg {
+  filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+    brightness(99%) contrast(90%);
+}
+
+.sideBar__setting :hover {
+  color: var(--color-primary-color);
+}
+
+.sideBar__setting:hover img {
+  filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+    brightness(99%) contrast(90%);
+}
+
+.--hidden {
+  display: none;
+}
