@@ -108,7 +108,7 @@ button {
 .app {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 100vh;
+  /* grid-template-rows: 100px 100vh; */
 }
 
 .sideBar {
@@ -126,6 +126,12 @@ button {
 }
 
 @media screen and (min-width: 1024px) {
+  .app {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 100vh;
+  }
+
   .app {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -155,10 +161,27 @@ button {
 /* ----------------------------- Header ------------------------------- */
 
 .header {
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  box-shadow: 5px 12px 10px rgba(107, 106, 106, 0.23);
+  z-index: 4;
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-shadow: 0 0 0;
+    z-index: 4;
+  }
 }
 
 .header__search__form {
@@ -370,6 +393,7 @@ img {
 .main {
   width: 100%;
   padding: 2rem;
+  margin-bottom: 2rem;
   overflow: auto;
 }
 
@@ -631,7 +655,7 @@ img {
 .categoryUi {
   background-color: var(--color-background);
   width: 100%;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 7px;
 }
 
@@ -811,5 +835,58 @@ img {
   .EditCatMod__btns button {
     font-size: 1rem;
     padding: 0.7rem 1rem;
+  }
+}
+
+/* ---------------------------------- dashboardUi ----------------------------------- */
+.dashboardUi {
+  background-color: var(--color-background);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.dashboardUi__main {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 4rem;
+  margin-top: 45px;
+  width: 100%;
+}
+
+.dashboardUi__main__items {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboardUi__main__items img {
+  margin: 0;
+  width: 35px;
+  height: 35px;
+}
+
+.dashboardUi__main__items :nth-child(2) {
+  margin: 1rem 0rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.dashboardUi__main__items :last-child {
+  text-align: center;
+  width: 160px;
+}
+
+@media screen and (min-width: 500px) {
+  .dashboardUi__main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1150px) {
+  .dashboardUi__main {
+    overflow: auto;
+    grid-template-columns: repeat(4, 1fr);
   }
 }

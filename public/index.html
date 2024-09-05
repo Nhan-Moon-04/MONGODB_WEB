@@ -159,8 +159,7 @@
 
       <!-------- Categoty Ui ---------------->
       <!-- * -->
-      <div class="main">
-        <div class="categoryUi">
+      <!-- <div class="categoryUi">
           <div class="category__header">
             <h1>Categories</h1>
             <button class="addCategoryBtn">Add Category</button>
@@ -185,8 +184,7 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> -->
 
       <div class="EditCategorySection --hidden">
         <div class="EditCatMod">
@@ -198,13 +196,52 @@
               id="editTitle"
               placeholder="Edit Title"
             />
-            <input type="text" name="editTitle" id="editTitle" placeholder="Edit Description" />
+            <input
+              type="text"
+              name="editTitle"
+              id="editTitle"
+              placeholder="Edit Description"
+            />
 
             <div class="EditCatMod__btns">
               <button class="cancelBtnEdit">Discard</button>
               <button class="submitBtnEdit">Submit</button>
             </div>
           </form>
+        </div>
+      </div>
+
+      <!--------------------------  Dashboard View(Ui)   ------------------------------->
+      <div class="main">
+        <div class="dashboardUi">
+          <div class="dashboardUi__header">
+            <h1>Overview</h1>
+          </div>
+          <div class="dashboardUi__main">
+            <div class="dashboardUi__main__items">
+              <img src="../assets/images/Quantity.svg" alt="quantity" />
+              <p class="dashboardUi__quantity">868</p>
+              <p>Quantity in Hand</p>
+            </div>
+
+            <div class="dashboardUi__main__items">
+              <img src="../assets/images/Sales.svg" alt="salesItem" />
+              <p class="dashboardUi__sales">$1434</p>
+              <p>Total Value in Hand</p>
+            </div>
+
+            <div class="dashboardUi__main__items">
+              <img src="../assets/images/Cancel.svg" alt="Cancel Item" />
+              <p class="dashboardUi__notAvailable">32</p>
+              <p>Not availabales</p>
+            </div>
+
+            <div class="dashboardUi__main__items">
+              <img src="../assets/images/Categoriescolor.svg" alt="category" />
+              <p class="dashboardUi__notAvailable">54</p>
+              <p>Total Categories</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
