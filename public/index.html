@@ -31,7 +31,7 @@
           </div>
           <div class="sideBar__setting sideBar__icon">
             <img src="../assets/images/setting.svg" alt="setting icon" />
-            <p>Setting</p>
+            <p>Categories</p>
           </div>
         </div>
       </div>
@@ -55,8 +55,8 @@
             <p>Inventory</p>
           </div>
           <div class="sideBar__setting sideBar__icon">
-            <img src="../assets/images/setting.svg" alt="setting icon" />
-            <p>Setting</p>
+            <img src="../assets/images/Categories.svg" alt="setting icon" />
+            <p>Categories</p>
           </div>
         </div>
       </div>
@@ -79,16 +79,15 @@
         />
       </header>
 
-      <!-------- Main App -------->
-
-      <div class="main">
-        <div class="inventory-app">
+      <!-------- Main App (Inventory)-------->
+      <!-- * -->
+      <!-- <div class="inventory-app">
           <div class="product-section__header">
             <h1>Products</h1>
             <div class="product-section__header__buttons">
               <div class="addProBtn">Add Product</div>
               <div class="filterBtn">
-                <img src="../assets/images/filterIcon.svg" alt="" />
+                <img src="../assets/images/filterIcon.svg" alt="filter Icon" />
                 <p>Filters</p>
               </div>
             </div>
@@ -125,6 +124,87 @@
               </tr>
             </table>
           </div>
+        </div> -->
+
+      <!-- add Product -->
+      <div class="addProSection --hidden">
+        <div class="addProModal">
+          <h1 class="addProModal__title">New Product</h1>
+          <form class="addProModal__form">
+            <div class="addProModal__form__inputs">
+              <p>Product Name</p>
+              <input type="text" placeholder="Enter product name" />
+            </div>
+            <div class="addProModal__form__inputs">
+              <p>Category</p>
+              <select name="category" id="category">
+                <option value="">Select product category</option>
+              </select>
+            </div>
+            <div class="addProModal__form__inputs">
+              <p>Quantity</p>
+              <input type="number" placeholder="Enter product quantity" />
+            </div>
+            <div class="addProModal__form__inputs">
+              <p>Price</p>
+              <input type="number" placeholder="Enter buying price" />
+            </div>
+            <div class="addProModal__form__buttons">
+              <button>Discard</button>
+              <button>Add Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-------- Categoty Ui ---------------->
+      <!-- * -->
+      <div class="main">
+        <div class="categoryUi">
+          <div class="category__header">
+            <h1>Categories</h1>
+            <button class="addCategoryBtn">Add Category</button>
+          </div>
+          <div class="category__items">
+            <div class="category__item">
+              <div class="category__item__text">
+                <h2 class="title">Cateogry 1</h2>
+                <p class="description">
+                  jfdjkjdksjkfldsjfdks f dkfjddfj klf jdkf djkdfj k
+                </p>
+              </div>
+              <div class="category__item__icons">
+                <svg class="icon editCategoryIcon">
+                  <use xlink:href="../assets/images/sprite.svg#editIcon"></use>
+                </svg>
+                <img
+                  src="../assets/images/deleteIcon.svg"
+                  alt="delete Icon"
+                  class="deleteBtnCategory"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="EditCategorySection --hidden">
+        <div class="EditCatMod">
+          <h1 class="EditCatMod__title">Edit Product</h1>
+          <form class="EditCatMod__form">
+            <input
+              type="text"
+              name="editTitle"
+              id="editTitle"
+              placeholder="Edit Title"
+            />
+            <input type="text" name="editTitle" id="editTitle" placeholder="Edit Description" />
+
+            <div class="EditCatMod__btns">
+              <button class="cancelBtnEdit">Discard</button>
+              <button class="submitBtnEdit">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
