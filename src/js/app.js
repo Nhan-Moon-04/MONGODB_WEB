@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const app = new App();
   app.addEventListeners();
 
+  CategoryUi.updateCategoryOptions();
   DashboardUi.setApp(); // Updating the ui with the selected default page
 });
 
