@@ -428,26 +428,6 @@ img {
   font-size: 0.6rem;
 }
 
-.filterBtn {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: var(--color-background-grey);
-  padding: 0.6rem;
-  border-radius: 5px;
-}
-
-.filterBtn p {
-  font-size: 0.6rem;
-}
-
-.filterBtn img {
-  width: 15px;
-  height: 15px;
-  margin-right: 7px;
-}
-
 .inventory-app table {
   overflow-x: auto;
   width: 100%;
@@ -511,25 +491,17 @@ img {
     font-size: 1.2rem;
   }
 
-  .filterBtn p {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
   .inventory-app {
     padding: 2rem;
   }
 
   .addProBtn {
     font-size: 0.9rem;
+    padding: 1rem 2rem;
   }
 
   .addProBtn:hover {
     box-shadow: 0 0 15px var(--color-primary-shadow);
-  }
-
-  .filterBtn:hover {
-    box-shadow: 0 0 15px var(--color-sec-shadow);
   }
 
   .product-section__header h1 {
@@ -661,7 +633,6 @@ img {
   align-items: center;
 }
 
-
 .categoryUi h1 {
   font-size: 1.3rem;
 }
@@ -718,7 +689,7 @@ img {
   cursor: pointer;
 }
 
-.editCategoryIcon svg{
+.editCategoryIcon svg {
   pointer-events: none;
 }
 
@@ -881,6 +852,11 @@ img {
   width: 160px;
 }
 
+.dashboardUi__header h1{
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
 @media screen and (min-width: 500px) {
   .dashboardUi__main {
     grid-template-columns: repeat(2, 1fr);
@@ -892,4 +868,6 @@ img {
     overflow: auto;
     grid-template-columns: repeat(4, 1fr);
   }
+
+
 }

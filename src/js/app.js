@@ -1,6 +1,3 @@
-// todo:
-// menu toggle
-
 import DashboardUi from "./Dashboard.js";
 import InventoryUi from "./InventoryView.js";
 import CategoryUi from "./categoryView.js";
@@ -14,6 +11,9 @@ const categoryBtns = [...document.querySelectorAll(".sideBar__setting")];
 const menuToggle = document.querySelector(".menu-toggle");
 const sideBarOnToggle = document.querySelector(".sideBar-ontoggle");
 const sideBarBackdrop = document.querySelector(".sideBar-ontoggle-backdrop");
+
+// -------------------------- Search Bar -------------------------------------
+const searchBar = document.querySelector(".searchBarInput");
 
 document.addEventListener("DOMContentLoaded", () => {
   const app = new App();
@@ -49,25 +49,38 @@ class App {
     sideBarBackdrop.addEventListener("click", () => {
       this.hideMenu();
     });
+    searchBar.addEventListener("input", () => {
+      this.searchInputLogic();
+      this.hideMenu();
+      inventoryBtns.forEach((btn) => btn.classList.add("--selectedBtnUi"));
+    });
+  }
+
+  searchInputLogic() {
+    InventoryUi.setApp(); // Updating the ui with the Inventory page
+    InventoryUi.seachLogic(searchBar.value);
+    this.removeCurrentSelectedBtn(); // Removing all previous selected button
   }
 
   dashboardBtnLogic(event) {
     DashboardUi.setApp(); // Updating the ui with the dashboard page
+    console.log(searchBar.value);
 
+    searchBar.value = ""; // Reseting SearchBar
     this.removeCurrentSelectedBtn(); // Removing all previous selected button
     event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
   }
 
   inventoryBtnLogic(event) {
     InventoryUi.setApp(); // Updating the ui with the Inventory page
-
+    searchBar.value = ""; // Reseting SearchBar
     this.removeCurrentSelectedBtn(); // Removing all previous selected button
     event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
   }
 
   categoryBtnLogic(event) {
     CategoryUi.setApp(); // Updating the ui with the Inventory page
-
+    searchBar.value = ""; // Reseting SearchBar
     this.removeCurrentSelectedBtn(); // Removing all previous selected button
     event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
   }

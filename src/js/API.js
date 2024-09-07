@@ -1,39 +1,3 @@
-// const categories = [
-//   {
-//     id: 1,
-//     title: "programming",
-//     description: "blah blah",
-//     updated: "2024-09-02T09:11:26.709Z",
-//   },
-//   {
-//     id: 2,
-//     title: "it",
-//     description: "bal bal",
-//     updated: "2021-09-02T09:11:26.709Z",
-//   },
-// ];
-
-// const products = [
-//   {
-//     id: 2,
-//     title: "network",
-//     category: "32432",
-//     quantity: 0,
-//     price: 32;
-//     Availability: "1";
-//     updated: "2024-09-02T09:11:26.709Z",
-//   },
-//   {
-//     id: 3,
-//     title: "backend",
-//     category: "programming",
-//     quantity: 0,
-//     price: 32;
-//     Availability: 1;
-//     updated: "2021-09-02T09:11:26.709Z",
-//   },
-// ];
-
 class Storage {
   getProducts() {
     // Getting all of the products

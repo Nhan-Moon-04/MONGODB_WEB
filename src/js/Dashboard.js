@@ -1,4 +1,5 @@
 const mainApp = document.querySelector(".main");
+import Storage from "./API.js";
 
 class DashboardUi {
   setApp() {
@@ -8,31 +9,58 @@ class DashboardUi {
         <h1>Overview</h1>
         </div>
         <div class="dashboardUi__main">
+
+        <div class="dashboardUi__main__items">
+            <img src="../assets/images/Cancel.svg" alt="Cancel Item" />
+            <p class="dashboardUi__notAvailable">${this.calculateProducts()}</p>
+            <p>Number of Producs</p>
+        </div>
+
         <div class="dashboardUi__main__items">
             <img src="../assets/images/Quantity.svg" alt="quantity" />
-            <p class="dashboardUi__quantity">868</p>
-            <p>Quantity in Hand</p>
+            <p class="dashboardUi__quantity">${this.calculateQuantity()}</p>
+            <p>Total Quantity</p>
         </div>
 
         <div class="dashboardUi__main__items">
             <img src="../assets/images/Sales.svg" alt="salesItem" />
-            <p class="dashboardUi__sales">$1434</p>
+            <p class="dashboardUi__sales">$${this.calculatePrice()}</p>
             <p>Total Value in Hand</p>
         </div>
 
-        <div class="dashboardUi__main__items">
-            <img src="../assets/images/Cancel.svg" alt="Cancel Item" />
-            <p class="dashboardUi__notAvailable">32</p>
-            <p>Not availabales</p>
-        </div>
+ 
 
         <div class="dashboardUi__main__items">
             <img src="../assets/images/Categoriescolor.svg" alt="category" />
-            <p class="dashboardUi__notAvailable">54</p>
+            <p class="dashboardUi__notAvailable">${this.totalCategories()}</p>
             <p>Total Categories</p>
         </div>
         </div>
     </div>`;
+  }
+
+  // Calculate the Quantity
+  calculateQuantity() {
+    const allProducts = Storage.getProducts();
+    return allProducts.reduce((acc, product) => acc + product.quantity, 0);
+  }
+
+  // Calculate the Price
+  calculatePrice() {
+    const allProducts = Storage.getProducts();
+    return allProducts.reduce((acc, product) => acc + product.price, 0);
+  }
+
+  // Calculate total categories
+  totalCategories() {
+    const allCategories = Storage.getCategories();
+    return allCategories.length;
+  }
+
+  // Calculate total Products
+  calculateProducts() {
+    const allCategories = Storage.getProducts();
+    return allCategories.length;
   }
 }
 

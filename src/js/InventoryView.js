@@ -13,6 +13,9 @@ const categoryInput = document.querySelector("#categoryInput");
 const productQuantityInput = document.querySelector(".productQuantityInput");
 const productPriceInput = document.querySelector(".productPriceInput");
 
+// --------------------- SearchBar --------------------------------
+const searchBar = document.querySelector(".searchBarInput");
+
 class InventoryUi {
   constructor() {
     this.id = 0; // Setting a default id
@@ -40,10 +43,6 @@ class InventoryUi {
         <h1>Products</h1>
         <div class="product-section__header__buttons">
             <button class="addProBtn">Add Product</button>
-            <div class="filterBtn">
-            <img src="../assets/images/filterIcon.svg" alt="filter Icon" />
-            <p>Filters</p>
-            </div>
         </div>
         </div>
 
@@ -63,10 +62,10 @@ class InventoryUi {
 
     // Selecting the products table section
     this.productSectionHTMl = document.querySelector(".product-section-table");
-    this.updateDom();
+    this.updateDom(Storage.getProducts());
   }
 
-  updateDom() {
+  updateDom(allProducts) {
     let result = `
     <tr class="table__title">
         <td>Product</td>
@@ -78,7 +77,6 @@ class InventoryUi {
     `;
 
     // Getting all the Data
-    const allProducts = Storage.getProducts();
     allProducts.forEach((product) => {
       result += this.createProductHTML(product); // Create HTML for each data
     });
@@ -131,11 +129,11 @@ class InventoryUi {
 
   getCategoryName(id) {
     const allCategories = Storage.getCategories();
-    const existed =  allCategories.find((category) => category.id == id)
-    if(existed){
-      return existed.title
+    const existed = allCategories.find((category) => category.id == id);
+    if (existed) {
+      return existed.title;
     }
-    return "No-Category"
+    return "No-Category";
   }
 
   openProductModal() {
@@ -175,14 +173,16 @@ class InventoryUi {
       id: this.id,
       title: productNameInput.value.trim(),
       category: categoryInput.value,
-      quantity: productQuantityInput.value,
-      price: productPriceInput.value,
+      quantity: Number(productQuantityInput.value),
+      price: Number(productPriceInput.value),
     });
 
     this.id = 0;
 
+    searchBar.value = "";
+
     // Updating the DOM
-    this.updateDom();
+    this.updateDom(Storage.getProducts());
     // Closing the modal
     this.closeProductModal();
   }
@@ -191,7 +191,9 @@ class InventoryUi {
     // Deleting the Product
     Storage.deleteProduct(id);
     // Update the DOM
-    this.updateDom();
+    searchBar.value = "";
+
+    this.updateDom(Storage.getProducts());
   }
 
   editBtnLogic(id) {
@@ -210,6 +212,15 @@ class InventoryUi {
     categoryInput.value = selectedProduct.category;
     productQuantityInput.value = selectedProduct.quantity;
     productPriceInput.value = selectedProduct.price;
+  }
+
+  seachLogic(inputValue) {
+    const targetValue = inputValue.toLowerCase().trim();
+    const allProducts = Storage.getProducts();
+    const filteredItem = allProducts.filter((product) =>
+      product.title.toLowerCase().trim().includes(targetValue)
+    );
+    this.updateDom(filteredItem);
   }
 }
 
