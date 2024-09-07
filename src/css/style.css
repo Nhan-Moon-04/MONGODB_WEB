@@ -45,6 +45,11 @@ input {
   display: none;
 }
 
+.--selectedBtnUi {
+  filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+    brightness(99%) contrast(90%);
+}
+
 /* *--------------------- Root ---------------------* */
 
 :root {
@@ -227,6 +232,7 @@ button {
 
 /* sidebar on toggle */
 .sideBar-ontoggle {
+  z-index: 10;
   position: fixed;
   width: 250px;
   top: 0;
@@ -240,12 +246,26 @@ button {
     width: 250px;
   }
 }
+.sideBar-ontoggle-backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.152);
+  z-index: 6;
+}
 
 @media screen and (min-width: 1024px) {
   .header img {
     display: none;
   }
   .sideBar-ontoggle {
+    width: 280px;
+    box-shadow: none;
+
+    display: none;
+  }
+  .sideBar-ontoggle--display {
     display: none;
   }
 }
@@ -292,36 +312,16 @@ button {
   .sideBar__icon p {
     font-weight: 400;
   }
-
-  .sideBar__icon:hover {
-    color: var(--color-primary-color);
-  }
-
-  .sideBar__dashboard:hover svg {
-    filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
-      brightness(99%) contrast(90%);
-  }
-
-  .sideBar__inventory :hover {
-    color: var(--color-primary-color);
-  }
-
-  .sideBar__inventory:hover svg {
-    filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
-      brightness(99%) contrast(90%);
-  }
-
-  .sideBar__setting :hover {
-    color: var(--color-primary-color);
-  }
-
-  .sideBar__setting:hover img {
-    filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
-      brightness(99%) contrast(90%);
-  }
 }
 
 /* ---------------------- Sidebar Toggle ---------------------- */
+
+.sideBar__icon :first-child {
+  pointer-events: none;
+}
+.sideBar__icon :last-child {
+  pointer-events: none;
+}
 .sideBar-ontoggle {
   padding: 0rem 2.4rem;
   display: grid;
@@ -358,29 +358,17 @@ img {
   margin-bottom: 2rem;
 }
 
-.sideBar__icon:hover {
-  color: var(--color-primary-color);
-}
-
-.sideBar__dashboard:hover svg {
+.sideBar__dashboard:hover {
   filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
     brightness(99%) contrast(90%);
 }
 
-.sideBar__inventory :hover {
-  color: var(--color-primary-color);
-}
-
-.sideBar__inventory:hover svg {
+.sideBar__inventory:hover {
   filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
     brightness(99%) contrast(90%);
 }
 
-.sideBar__setting :hover {
-  color: var(--color-primary-color);
-}
-
-.sideBar__setting:hover img {
+.sideBar__setting:hover {
   filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
     brightness(99%) contrast(90%);
 }
@@ -422,6 +410,8 @@ img {
 }
 
 .product-section__header__buttons {
+  perspective: 2500px;
+
   display: flex;
   align-items: center;
 }
@@ -436,7 +426,6 @@ img {
   background: var(--color-primary-color);
   margin-right: 0.5rem;
   font-size: 0.6rem;
-  transition: all 0.2s;
 }
 
 .filterBtn {
@@ -447,7 +436,6 @@ img {
   background-color: var(--color-background-grey);
   padding: 0.6rem;
   border-radius: 5px;
-  transition: all 0.2s;
 }
 
 .filterBtn p {
@@ -500,6 +488,10 @@ img {
   margin-right: 15px;
 }
 
+.editIcon svg {
+  pointer-events: none;
+}
+
 .editIcon:hover {
   filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
     brightness(99%) contrast(90%);
@@ -541,14 +533,14 @@ img {
   }
 
   .product-section__header h1 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 600;
   }
 
   .inventory-app table tr td {
     margin-right: 20px;
     padding: 0px 20px;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }
 
@@ -559,6 +551,7 @@ img {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.116);
   backdrop-filter: blur(2px);
+  z-index: 20;
 }
 
 .addProModal {
@@ -650,6 +643,9 @@ img {
   }
 }
 
+.deleteIcon img {
+  pointer-events: none;
+}
 /* ------------------------------ Category Section --------------------------------------- */
 
 .categoryUi {
@@ -664,6 +660,7 @@ img {
   justify-content: space-between;
   align-items: center;
 }
+
 
 .categoryUi h1 {
   font-size: 1.3rem;
@@ -721,6 +718,10 @@ img {
   cursor: pointer;
 }
 
+.editCategoryIcon svg{
+  pointer-events: none;
+}
+
 .category__item__icons {
   display: flex;
   align-self: center;
@@ -742,7 +743,8 @@ img {
   }
 
   .categoryUi h1 {
-    font-size: 2rem;
+    font-weight: 600;
+    font-size: 1.8rem;
   }
 
   .category__item__text h2 {
@@ -774,6 +776,7 @@ img {
   width: 100%;
   height: 100%;
   top: 0;
+  z-index: 4;
 }
 
 .EditCatMod__title {
