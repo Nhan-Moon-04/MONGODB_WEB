@@ -174,6 +174,8 @@ class InventoryUi {
       alert("Quantity and Price should be at least 0");
       return -1;
     }
+    // checking for duplication
+
     const allProducts = Storage.getProducts();
     const duplicate = allProducts.find(
       (prodcut) =>

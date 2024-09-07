@@ -106,7 +106,7 @@ class CategoryUi {
         category.title.toLowerCase().trim() ==
         editTitleInput.value.toLowerCase().trim()
     );
-
+    // checking for duplication
     if (duplicate) {
       alert("Category Alerady Exist");
       return -1;
