@@ -26,10 +26,22 @@ class Storage {
       existed.description = data.description;
       existed.updated = new Date().toISOString();
     } else {
-      data.id = new Date().getTime();
-      data.updated = new Date().toISOString();
+      // Finding if the data already exist
+      const existed = allCategories.find(
+        (category) =>
+          category.title.toLowerCase().trim() == data.title.toLowerCase().trim()
+      );
 
-      allCategories.push(data);
+      if (existed) {
+        existed.title = data.title;
+        existed.description = data.description;
+        existed.updated = new Date().toISOString();
+      } else {
+        data.id = new Date().getTime();
+        data.updated = new Date().toISOString();
+
+        allCategories.push(data);
+      }
     }
     localStorage.setItem("Inventorycategories", JSON.stringify(allCategories));
   }
