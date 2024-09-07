@@ -100,7 +100,17 @@ class CategoryUi {
       alert("Please Enter all of the fields!");
       return -1;
     }
+    const allCategories = Storage.getCategories();
+    const duplicate = allCategories.find(
+      (category) =>
+        category.title.toLowerCase().trim() ==
+        editTitleInput.value.toLowerCase().trim()
+    );
 
+    if (duplicate) {
+      alert("Category Alerady Exist");
+      return -1;
+    }
     // Saving the data to localstorage
     Storage.saveCategorie({
       id: this.id,
