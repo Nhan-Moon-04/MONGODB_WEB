@@ -176,17 +176,6 @@ class InventoryUi {
     }
     // checking for duplication
 
-    const allProducts = Storage.getProducts();
-    const duplicate = allProducts.find(
-      (prodcut) =>
-        prodcut.title.toLowerCase().trim() ==
-        productNameInput.value.toLowerCase().trim()
-    );
-
-    if (duplicate) {
-      alert("Product Alerady Exist");
-      return -1;
-    }
     // Updating Local Storage
     Storage.saveProduct({
       id: this.id,
