@@ -57,6 +57,7 @@ class InventoryUi {
     addProBtn.addEventListener("click", () => {
       // Setting the title to be Add new Product
       ModalTitle.textContent = "New Product";
+      ProModalAddBtn.textContent = "Add Product"
       this.openProductModal();
     });
 
@@ -215,6 +216,7 @@ class InventoryUi {
     this.openProductModal();
 
     ModalTitle.textContent = "Edit Product"; // Upating Modal title
+    ProModalAddBtn.textContent = "Submit Edit"
     // Updating the value for each input
     productNameInput.value = selectedProduct.title;
     categoryInput.value = selectedProduct.category;
