@@ -26,10 +26,19 @@ class Storage {
       existed.description = data.description;
       existed.updated = new Date().toISOString();
     } else {
-      data.id = new Date().getTime();
-      data.updated = new Date().toISOString();
+      const existed = allCategories.find(
+        (category) => category.title.toLowerCase() == data.title.toLowerCase()
+      );
+      if (existed) {
+        existed.title = data.title;
+        existed.description = data.description;
+        existed.updated = new Date().toISOString();
+      } else {
+        data.id = new Date().getTime();
+        data.updated = new Date().toISOString();
 
-      allCategories.push(data);
+        allCategories.push(data);
+      }
     }
     localStorage.setItem("Inventorycategories", JSON.stringify(allCategories));
   }
@@ -46,9 +55,20 @@ class Storage {
       existed.price = data.price;
       existed.updated = new Date().toISOString();
     } else {
-      data.id = new Date().getTime();
-      data.updated = new Date().toISOString();
-      allProducts.push(data);
+      const existed = allProducts.find(
+        (product) => product.title.toLowerCase() == data.title.toLowerCase()
+      ); // Finding the data that already exist
+      if (existed) {
+        existed.title = data.title;
+        existed.category = data.category;
+        existed.quantity = data.quantity;
+        existed.price = data.price;
+        existed.updated = new Date().toISOString();
+      } else {
+        data.id = new Date().getTime();
+        data.updated = new Date().toISOString();
+        allProducts.push(data);
+      }
     }
     localStorage.setItem("InventoryProducts", JSON.stringify(allProducts));
   }

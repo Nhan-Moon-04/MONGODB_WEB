@@ -167,7 +167,13 @@ class InventoryUi {
       alert("Please enter all of the fields!");
       return -1;
     }
-
+    if (
+      Number(productPriceInput.value) < 0 ||
+      Number(productQuantityInput.value) < 0
+    ) {
+      alert("Quantity and Price should be at least 0");
+      return -1;
+    }
     // Updating Local Storage
     Storage.saveProduct({
       id: this.id,
