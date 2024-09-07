@@ -71,6 +71,7 @@ class CategoryUi {
     // Closing the Modal
     categoryModal.classList.add("--hidden");
     this.clearInputs();
+    this.id = 0;
   }
 
   createHTML(category) {
@@ -99,6 +100,23 @@ class CategoryUi {
     if (editDesInput.value == "" || editTitleInput.value == "") {
       alert("Please Enter all of the fields!");
       return -1;
+    }
+
+    // checking for duplication
+    if (this.id != 0) {
+      const allCategories = Storage.getCategories();
+      const otherCategories = allCategories.filter(
+        (category) => category.id != this.id
+      );
+      const existed = otherCategories.find(
+        (category) =>
+          category.title.toLowerCase().trim() ==
+          editTitleInput.value.toLowerCase().trim()
+      );
+      if (existed) {
+        alert("Category already Exist");
+        return -1;
+      }
     }
 
     // Saving the data to localstorage

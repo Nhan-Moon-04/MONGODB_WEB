@@ -57,7 +57,7 @@ class InventoryUi {
     addProBtn.addEventListener("click", () => {
       // Setting the title to be Add new Product
       ModalTitle.textContent = "New Product";
-      ProModalAddBtn.textContent = "Add Product"
+      ProModalAddBtn.textContent = "Add Product";
       this.openProductModal();
     });
 
@@ -145,6 +145,7 @@ class InventoryUi {
   closeProductModal() {
     addProModal.classList.add("--hidden");
     this.clearInputsField();
+    this.id = 0;
   }
 
   clearInputsField() {
@@ -175,7 +176,25 @@ class InventoryUi {
       alert("Quantity and Price should be at least 0");
       return -1;
     }
+
     // checking for duplication
+    if (this.id != 0) {
+      const allProducts = Storage.getProducts();
+      const otherProducts = allProducts.filter(
+        (product) => product.id != this.id
+      );
+      console.log(productNameInput.value);
+
+      const existed = otherProducts.find(
+        (product) =>
+          product.title.toLowerCase().trim() ==
+          productNameInput.value.toLowerCase().trim()
+      );
+      if (existed) {
+        alert("Product already Exist");
+        return -1;
+      }
+    }
 
     // Updating Local Storage
     Storage.saveProduct({
@@ -216,7 +235,7 @@ class InventoryUi {
     this.openProductModal();
 
     ModalTitle.textContent = "Edit Product"; // Upating Modal title
-    ProModalAddBtn.textContent = "Submit Edit"
+    ProModalAddBtn.textContent = "Submit Edit";
     // Updating the value for each input
     productNameInput.value = selectedProduct.title;
     categoryInput.value = selectedProduct.category;

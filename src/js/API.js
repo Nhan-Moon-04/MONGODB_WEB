@@ -46,9 +46,23 @@ class Storage {
       existed.price = data.price;
       existed.updated = new Date().toISOString();
     } else {
-      data.id = new Date().getTime();
-      data.updated = new Date().toISOString();
-      allProducts.push(data);
+      // Finding if the data already exist
+      const existed = allProducts.find(
+        (product) =>
+          product.title.toLowerCase().trim() == data.title.toLowerCase().trim()
+      );
+
+      if (existed) {
+        existed.title = data.title;
+        existed.category = data.category;
+        existed.quantity = data.quantity;
+        existed.price = data.price;
+        existed.updated = new Date().toISOString();
+      } else {
+        data.id = new Date().getTime();
+        data.updated = new Date().toISOString();
+        allProducts.push(data);
+      }
     }
     localStorage.setItem("InventoryProducts", JSON.stringify(allProducts));
   }
