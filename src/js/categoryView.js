@@ -163,6 +163,7 @@ class CategoryUi {
 
   editCategory(id) {
     const allCategories = Storage.getCategories();
+
     const selectedCategory = allCategories.find(
       (category) => category.id == id
     );
