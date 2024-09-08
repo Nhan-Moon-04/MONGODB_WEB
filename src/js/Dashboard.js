@@ -42,25 +42,32 @@ class DashboardUi {
   // Calculate the Quantity
   calculateQuantity() {
     const allProducts = Storage.getProducts();
-    return allProducts.reduce((acc, product) => acc + product.quantity, 0);
+    return allProducts
+      .reduce((acc, product) => acc + product.quantity, 0)
+      .toLocaleString();
   }
 
   // Calculate the Price
   calculatePrice() {
     const allProducts = Storage.getProducts();
-    return allProducts.reduce((acc, product) => acc + product.price, 0);
+    const totalPrice = allProducts.reduce(
+      (acc, product) => acc + product.price,
+      0
+    );
+    return totalPrice.toLocaleString();
   }
 
   // Calculate total categories
   totalCategories() {
     const allCategories = Storage.getCategories();
-    return allCategories.length;
+    const total = allCategories.length;
+    return total.toLocaleString();
   }
 
   // Calculate total Products
   calculateProducts() {
     const allCategories = Storage.getProducts();
-    return allCategories.length;
+    return allCategories.length.toLocaleString();
   }
 }
 
