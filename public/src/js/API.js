@@ -54,6 +54,7 @@ class Storage {
             console.error('Error saving product:', error);
         }
     }
+    
 
     async deleteProduct(id) {
         try {

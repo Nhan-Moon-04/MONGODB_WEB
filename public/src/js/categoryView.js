@@ -37,29 +37,33 @@ class CategoryUi {
     });
   }
 
-  setApp() {
+  async setApp() {
     mainApp.innerHTML = `
-    <div class="categoryUi">
-        <div class="category__header">
-            <h1>Categories</h1>
-            <button class="addCategoryBtn">Add Category</button>
+    <div class="inventory-app">
+        <div class="product-section__header">
+            <h1>Products</h1>
+            <div class="product-section__header__buttons">
+                <button class="addProBtn">Add Product</button>
+            </div>
         </div>
-        <div class="category__items">
-           
+        <div class="product-section">
+            <table class ="product-section-table">
+            </table>
         </div>
-    </div>
-    `;
+    </div>`;
 
-    this.HTMLContainer = document.querySelector(".category__items");
-    this.updateDOM();
-    // Selecting the add Category button on the main page
-    const addCategoryBtn = document.querySelector(".addCategoryBtn");
-
-    addCategoryBtn.addEventListener("click", () => {
-      categoryModTitle.textContent = "Add Category"; // Updating the Modal Title
-      this.openCategoryModal();
+    const addProBtn = document.querySelector(".addProBtn");
+    addProBtn.addEventListener("click", () => {
+        ModalTitle.textContent = "New Product";
+        ProModalAddBtn.textContent = "Add Product";
+        this.openProductModal();
     });
-  }
+
+    // Tải dữ liệu sản phẩm từ API
+    const products = await Storage.getProducts();
+    this.updateDom(products);
+}
+
 
   openCategoryModal() {
     // Opening the Modal
