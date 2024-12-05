@@ -15,12 +15,12 @@ const sideBarBackdrop = document.querySelector(".sideBar-ontoggle-backdrop");
 // -------------------------- Search Bar -------------------------------------
 const searchBar = document.querySelector(".searchBarInput");
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const app = new App();
   app.addEventListeners();
 
-  CategoryUi.updateCategoryOptions();
-  DashboardUi.setApp(); // Updating the ui with the selected default page
+  await CategoryUi.updateCategoryOptions();
+  await DashboardUi.setApp(); // Updating the ui with the selected default page
 });
 
 class App {
@@ -57,14 +57,14 @@ class App {
     });
   }
 
-  searchInputLogic() {
-    InventoryUi.setApp(); // Updating the ui with the Inventory page
+  async searchInputLogic() {
+    await InventoryUi.setApp(); // Updating the ui with the Inventory page
     InventoryUi.seachLogic(searchBar.value);
     this.removeCurrentSelectedBtn(); // Removing all previous selected button
   }
 
-  dashboardBtnLogic(event) {
-    DashboardUi.setApp(); // Updating the ui with the dashboard page
+  async dashboardBtnLogic(event) {
+    await DashboardUi.setApp(); // Updating the ui with the dashboard page
     console.log(searchBar.value);
 
     searchBar.value = ""; // Reseting SearchBar
@@ -72,15 +72,15 @@ class App {
     event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
   }
 
-  inventoryBtnLogic(event) {
-    InventoryUi.setApp(); // Updating the ui with the Inventory page
+  async inventoryBtnLogic(event) {
+    await InventoryUi.setApp(); // Updating the ui with the Inventory page
     searchBar.value = ""; // Reseting SearchBar
     this.removeCurrentSelectedBtn(); // Removing all previous selected button
     event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
   }
 
-  categoryBtnLogic(event) {
-    CategoryUi.setApp(); // Updating the ui with the Inventory page
+  async categoryBtnLogic(event) {
+    await CategoryUi.setApp(); // Updating the ui with the Inventory page
     searchBar.value = ""; // Reseting SearchBar
     this.removeCurrentSelectedBtn(); // Removing all previous selected button
     event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
