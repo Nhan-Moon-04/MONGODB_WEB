@@ -1,85 +1,116 @@
-class Storage {
-    async getProducts() {
-        try {
-            const response = await fetch('/api/products');
-            const allData = await response.json();
-            this.sortArray(allData); // Sorting the Products (newest first by default)
-            return allData;
-        } catch (error) {
-            console.error('Error fetching products:', error);
-            return [];
-        }
-    }
+// server.js
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-    async getCategories() {
-        try {
-            const response = await fetch('/api/categories');
-            const allData = await response.json();
-            this.sortArray(allData); // Sorting the Categories (newest first by default)
-            return allData;
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-            return [];
-        }
-    }
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-    async saveCategorie(data) {
-        try {
-            const method = data.id ? 'PUT' : 'POST';
-            const response = await fetch(`/api/categories${data.id ? `/${data.id}` : ''}`, {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            return await response.json();
-        } catch (error) {
-            console.error('Error saving category:', error);
-        }
-    }
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 
-    async saveProduct(data) {
-        try {
-            const method = data.id ? 'PUT' : 'POST';
-            const response = await fetch(`/api/products${data.id ? `/${data.id}` : ''}`, {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            return await response.json();
-        } catch (error) {
-            console.error('Error saving product:', error);
-        }
-    }
-    
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/mydatabase', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 
-    async deleteProduct(id) {
-        try {
-            await fetch(`/api/products/${id}`, {
-                method: 'DELETE'
-            });
-        } catch (error) {
-            console.error('Error deleting product:', error);
-        }
-    }
+// Define Product and Category schemas
+const productSchema = new mongoose.Schema({
+    name: String,
+    price: Number,
+    updated: { type: Date, default: Date.now }
+});
 
-    async deleteCategory(id) {
-        try {
-            await fetch(`/api/categories/${id}`, {
-                method: 'DELETE'
-            });
-        } catch (error) {
-            console.error('Error deleting category:', error);
-        }
-    }
+const categorySchema = new mongoose.Schema({
+    name: String,
+    updated: { type: Date, default: Date.now }
+});
 
-    sortArray(array) {
-        // Sorting array by newest
-        array.sort((a, b) => (new Date(a.updated) < new Date(b.updated) ? 1 : -1));
-    }
-}
+// Create models
+const Product = mongoose.model('Product', productSchema);
+const Category = mongoose.model('Category', categorySchema);
 
-export default new Storage();
+// API endpoints
+app.get('/api/products', async (req, res) => {
+    try {
+        const products = await Product.find().sort({ updated: -1 });
+        res.json(products);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching products' });
+    }
+});
+
+app.get('/api/categories', async (req, res) => {
+    try {
+        const categories = await Category.find().sort({ updated: -1 });
+        res.json(categories);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching categories' });
+    }
+});
+
+app.post('/api/products', async (req, res) => {
+    try {
+        const product = new Product(req.body);
+        await product.save();
+        res.status(201).json(product);
+    } catch (error) {
+        res.status(500).json({ message: 'Error saving product' });
+    }
+});
+
+app.post('/api/categories', async (req, res) => {
+    try {
+        const category = new Category(req.body);
+        await category.save();
+        res.status(201).json(category);
+    } catch (error) {
+        res.status(500).json({ message: 'Error saving category' });
+    }
+});
+
+app.put('/api/products/:id', async (req, res) => {
+    try {
+        const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(product);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating product' });
+    }
+});
+
+app.put('/api/categories/:id', async (req, res) => {
+    try {
+        const category = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(category);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating category' });
+    }
+});
+
+app.delete('/api/products/:id', async (req, res) => {
+    try {
+        await Product.findByIdAndDelete(req.params.id);
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting product' });
+    }
+});
+
+app.delete('/api/categories/:id', async (req, res) => {
+    try {
+        await Category.findByIdAndDelete(req.params.id);
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting category' });
+    }
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

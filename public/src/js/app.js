@@ -64,13 +64,17 @@ class App {
   }
 
   async dashboardBtnLogic(event) {
-    await DashboardUi.setApp(); // Updating the ui with the dashboard page
-    console.log(searchBar.value);
-
-    searchBar.value = ""; // Reseting SearchBar
-    this.removeCurrentSelectedBtn(); // Removing all previous selected button
-    event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
-  }
+    try {
+        await DashboardUi.setApp(); // Updating the UI with the dashboard page
+        console.log(searchBar.value);
+        searchBar.value = ""; // Resetting SearchBar
+        this.removeCurrentSelectedBtn(); // Removing all previous selected button
+        event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
+    } catch (error) {
+        console.error('Error updating dashboard:', error);
+        alert('Failed to load dashboard. Please try again later.');
+    }
+}
 
   async inventoryBtnLogic(event) {
     await InventoryUi.setApp(); // Updating the ui with the Inventory page
