@@ -1,0 +1,17 @@
+{
+    "projectId": "prj_Drb17AmvHzO5c3E1gk9J1YD0t57c",
+    "orgId": "team_iAihMweV6V9jWecXxbq2MiyY",
+    "builds": [
+      {
+        "src": "public/index.html",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/public/$1"
+      }
+    ]
+  }
+  
